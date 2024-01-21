@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/joi-browser@13.4.0/dist/joi-browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="./entry.js"></script>
   </head>
@@ -16,11 +17,14 @@
         placeholder="Search for location"
       />
       <button id="location-button"></button>
+      <p id="error-message"></p>
     </div>
 
     <div class="container-card">
+      <h2>Current Weather</h2>
       <p id="sun-rise"></p>
       <p id="temp"></p>
+      <div id="icon"></div>
     </div>
     <footer>
       <a
