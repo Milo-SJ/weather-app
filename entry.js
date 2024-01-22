@@ -1,9 +1,6 @@
 const rootRef = document.getElementById("sun-rise");
 const rootTemp = document.getElementById("temp");
 const rootIcon = document.getElementById("icon");
-const schema = {
-  location: Joi.string().min(2),
-};
 import { getUserLocation } from "./location.js";
 
 const loadSpinner = `<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>`;
@@ -70,11 +67,16 @@ getTemp();
 const locationBtn = document
   .getElementById("location-button")
   .addEventListener("click", async function (e) {
-    const result = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=a2fea60601d0d1dd4349917d7c3b89e2`
-    );
-    getTemp();
-    // getWeatherData();
+    try {
+      const locationResult = await getUserLocation();
+      const { latitude, longitude } = locationResult.coords;
+
+      await getTemp(latitude, longitude);
+
+      await getWeatherData(latitude, longitude, locationResult.name);
+    } catch (err) {
+      rootTemp.innerHTML = `Apologies, data not available. Please try again later.`;
+    }
   });
 
 const searchLocation = document
@@ -90,4 +92,3 @@ const searchLocation = document
     getWeatherData(lat, lon, name);
     console.log(getWeatherData);
   });
-// add validation to the above
