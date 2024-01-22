@@ -139,6 +139,10 @@ p {
   margin: 10px 10px;
 }
 
+#error-message {
+  color: white;
+}
+
 img {
   margin: 10px;
 }
