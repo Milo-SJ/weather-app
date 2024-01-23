@@ -1,3 +1,4 @@
+// below need working on
 const validateRef = document.getElementById("location-search");
 
 const userInput = {};
@@ -15,13 +16,15 @@ validateRef.addEventListener("input", (e) => {
       });
     }
 
+    //clean up old errors
     const errorRefs = document.getElementById("error-message");
     Array.from(errorRefs).forEach((error) => {
       error.innerHTML = "";
     });
 
     for (const error in errorsMod) {
-      document.getElementById(`${error}Error`).innerHTML = errorsMod[error];
+      document.getElementById(`${error}error-message`).innerHTML =
+        errorsMod[error];
     }
   });
 });
